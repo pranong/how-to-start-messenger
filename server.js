@@ -32,10 +32,11 @@ app.post('/webhook/', function (req, res) {
       }, function(error, response, body) {
         try {
           var condition = body.main;
+          var condition2 = body.weather;
           sendTextMessage(sender, "ตอนนี้อุณหภูมิใน " + location + " อยู่ที่ " + condition.temp + " องศาเซลเซียส" );
-          sendTextMessage(sender, "โดยอุณหภูมิสูงสุดจะอยู่ที่ " + condition.temp_max);
-          sendTextMessage(sender, "โดยอุณหภูมิต่ำสุดจะอยู่ที่ " + condition.temp_min);
-          sendTextMessage(sender, "บรรยากาศโดยรวมเป็นแบบ " + body.weather.description);
+          sendTextMessage(sender, "โดยอุณหภูมิสูงสุดจะอยู่ที่ " + condition.temp_max + " องศาเซลเซียส" );
+          sendTextMessage(sender, "โดยอุณหภูมิต่ำสุดจะอยู่ที่ " + condition.temp_min + " องศาเซลเซียส" );
+          sendTextMessage(sender, "บรรยากาศโดยรวมเป็นแบบ " + condition2.description);
         } catch(err) {
           console.error('error caught', err);
           sendTextMessage(sender, "เราหาเมืองนี้ไม่เจอ...กรุณากรอกใหม่อีกครั้ง");
